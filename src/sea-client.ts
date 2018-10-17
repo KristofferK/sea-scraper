@@ -1,6 +1,8 @@
 import { Browser, Page, launch, Response } from 'puppeteer';
 import { existsSync, mkdirSync, promises } from 'fs';
 import { Link } from './models/link';
+import { ITenancyGenerator } from './tenancy-generators/i-tenancy-generator';
+import { Tenancy } from './models/tenancy';
 
 export class SEAClient {
   private screenshotsFolder = "screenshots/";
@@ -29,6 +31,19 @@ export class SEAClient {
       .filter(e => !isNaN(+e.title.substr(0, 4)))
     });
     return links;
+  }
+
+  async getTenanciesFromLink(link: Link, tenancyGenerator: ITenancyGenerator): Promise<Tenancy[]> {
+    const elements = await this.getTenancyElements(link);
+    return elements.map(element => tenancyGenerator.generateTenancy(link, element));
+  }
+
+  private async getTenancyElements(link: Link): Promise<HTMLDivElement[]> {
+    await this.page.goto(link.url);
+    await this.page.waitForSelector('asidaiodasda');
+    await this.page.waitFor(200);
+    let elements: HTMLDivElement[] = []
+    return elements;
   }
   
   private async screenshot(file: string) {

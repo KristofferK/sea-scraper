@@ -1,9 +1,14 @@
-import { SEAClient } from "./sea-client";
-import { Link } from './models/link';
+import { SEAClient } from './sea-client';
+import { DefaultTenancyGenerator } from './tenancy-generators/default-tenancy-generator';
 
 (async() => {
   const client = await SEAClient.initialize();
-  client.getLinks().then(console.log).catch(e => console.log('ERROR', e));
+  const links = await client.getLinks();
+
+  const apartments = await links.map(link => client.getTenanciesFromLink(link, new DefaultTenancyGenerator()))
+  .reduce((a: any[], b) => {
+    return a.concat(b);
+  }, []);
 
   // process.exit();
 })();
