@@ -1,0 +1,30 @@
+{
+  "name": "sea-scraper",
+  "version": "1.0.0",
+  "description": "Having some trouble scraping tenancies from Salling EjendomsAdministration with C#, so giving it a shot with Puppeteer instead.",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KristofferK/sea-scraper.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "sea-scraper"
+  ],
+  "author": "Kristoffer K",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KristofferK/sea-scraper/issues"
+  },
+  "homepage": "https://github.com/KristofferK/sea-scraper#readme",
+  "dependencies": {
+    "puppeteer": "^1.8.0"
+  },
+  "devDependencies": {
+    "@types/puppeteer": "^1.6.4"
+  }
+}
