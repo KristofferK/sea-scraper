@@ -26,8 +26,7 @@ export class SEAClient {
     const links: Link[] = await this.page.evaluate(() => {
       return (<HTMLAnchorElement[]>[...document.querySelectorAll('div[data-margin="15"][data-width="180"][data-height="30"] a')])
       .map(e => { return { title: e.innerText, url: e.getAttribute('href') }})
-      .filter(e => e.title.indexOf('Parkering') === -1)
-      .filter(e => e.title.indexOf('Erhverv') === -1)
+      .filter(e => !isNaN(+e.title.substr(0, 4)))
     });
     return links;
   }
