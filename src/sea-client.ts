@@ -31,7 +31,7 @@ export class SEAClient {
     return links;
   }
   
-    private async screenshot(file: string) {
-      return this.page.screenshot({ path: `${this.screenshotsFolder}/${file}` });
-    }
+  private async screenshot(file: string) {
+    return this.page.screenshot({ path: `${this.screenshotsFolder}/${file}` });
   }
+}
